@@ -1,6 +1,4 @@
-# Deploying a React App* to GitHub Pages
-
-\* created using `create-react-app`
+# Deploying a React App to GitHub Pages
 
 # Introduction
 
@@ -148,12 +146,26 @@ At this point, the React app's `package.json` file includes a property named `ho
     ```diff
     "scripts": {
     +   "predeploy": "npm run build",
-    +   "deploy": "gh-pages -d build",
+    +   "deploy": "gh-pages -d build", // FOR Create-React-App!!
+    +   "deploy": "gh-pages -d dist", // FOR VITE!!
         "start": "react-scripts start",
         "build": "react-scripts build",
     ```
 
 At this point, the  React app's `package.json` file includes deployment scripts.
+
+**ADDITIONAL STEP FOR VITE:**
+Add base route (name of repo) to `vite.config.ts`
+```
+import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react'
+
+// https://vite.dev/config/
+export default defineConfig({
+    plugins: [react()],
+    base: '/cs378-p4/', // name of the repo/path!!
+})
+```
 
 ### 6. Add a "remote" that points to the GitHub repository
 
